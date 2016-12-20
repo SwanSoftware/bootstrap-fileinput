@@ -3129,6 +3129,10 @@
                 $el.trigger('change.fileinput');
             }
             return $el;
+        },
+        removeCachedFile: function (index) {
+        	index = parseInt(index.replace('init_', ''));
+            previewCache.unset(this.id, index);
         }
     };
 
