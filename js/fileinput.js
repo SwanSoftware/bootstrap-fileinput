@@ -1238,7 +1238,7 @@
                 $modal = self.$modal, $prev = $modal.find('.btn-prev'), $next = $modal.find('.btn-next'), $tmp,
                 $btnFull = $modal.find('.btn-fullscreen'), $btnBord = $modal.find('.btn-borderless'),
                 $btnTogh = $modal.find('.btn-toggleheader'),
-                $zoomPreview = $preview.parent().find('.kv-zoom-cache #zoom-' + previewId);
+                $zoomPreview = $preview;
             tmplt = $zoomPreview.data('template') || 'generic';
             $content = $zoomPreview.find('.kv-file-content');
             body = $content.length ? $content.html() : '';
@@ -1361,13 +1361,13 @@
             var self = this, deleteExtraData = self.deleteExtraData || {},
                 resetProgress = function () {
                     var hasFiles = self.isUploadable ? previewCache.count(self.id) : self.$element.get(0).files.length;
-                    if (self.$preview.find('.kv-file-remove:visible').length === 0 && !hasFiles) {
+                    if (self.$preview.find('.kv-file-remove').length === 0 && !hasFiles) {
                         self.reset();
                         self.initialCaption = '';
                     }
                 };
             self._initZoomButton();
-            self.$preview.find('.kv-file-remove:visible').each(function () {
+            self.$preview.find('.kv-file-remove').each(function () {
                 var $el = $(this), vUrl = $el.data('url') || self.deleteUrl, vKey = $el.data('key');
                 if (isEmpty(vUrl) || vKey === undefined) {
                     return;
@@ -2023,7 +2023,7 @@
                 return;
             }
             self._initZoomButton();
-            self.$preview.find('.kv-file-remove:visible').each(function () {
+            self.$preview.find('.kv-file-remove').each(function () {
                 var $el = $(this), $frame = $el.closest(FRAMES), hasError, id = $frame.attr('id'),
                     ind = $frame.attr('data-fileindex'), n, cap, status;
                 handler($el, 'click', function () {
@@ -2121,7 +2121,7 @@
             }
             zoomContent = '\n<div class="kv-zoom-cache" style="display:none">\n' + zoomContent + '\n</div>\n';
             prevContent = getContent((forcePrevIcon ? 'other' : cat), data);
-            return prevContent + zoomContent;
+            return prevContent;
         },
         _previewDefault: function (file, previewId, isDisabled) {
             var self = this, $preview = self.$preview, $previewLive = $preview.find('.file-live-thumbs');
@@ -3131,7 +3131,7 @@
             return $el;
         },
         removeCachedFile: function (index) {
-        	index = parseInt(index.replace('init_', ''));
+          	index = parseInt(index.replace('init_', ''));
             previewCache.unset(this.id, index);
         }
     };
