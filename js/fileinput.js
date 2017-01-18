@@ -1305,15 +1305,16 @@
                 }
                 $modal.focus();
             });
-            handler($modal, 'keydown', function (e) {
-                var key = e.which || e.keyCode;
-                if (key === 37 && !$prev.attr('disabled')) {
-                    self._zoomSlideShow('prev', previewId);
-                }
-                if (key === 39 && !$next.attr('disabled')) {
-                    self._zoomSlideShow('next', previewId);
-                }
-            });
+						// Disable keyboard navigation on zoom window
+            // handler($modal, 'keydown', function (e) {
+            //     var key = e.which || e.keyCode;
+            //     if (key === 37 && !$prev.attr('disabled')) {
+            //         self._zoomSlideShow('prev', previewId);
+            //     }
+            //     if (key === 39 && !$next.attr('disabled')) {
+            //         self._zoomSlideShow('next', previewId);
+            //     }
+            // });
         },
         _zoomPreview: function ($btn) {
             var self = this, $preview;
